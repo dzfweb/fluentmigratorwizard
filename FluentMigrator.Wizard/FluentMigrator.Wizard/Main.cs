@@ -11,7 +11,7 @@ namespace FluentMigrator.Wizard
     public partial class Main : Form
     {
         private IniData data = null;
-        private string formTitle = "Fluent Migrator Wizard";
+        private string formTitle = "FluentMigrator Wizard";
         private FileIniDataParser parser = new FileIniDataParser();
         private string arguments = string.Empty;
         delegate void updateDelegate(string output);
@@ -233,13 +233,61 @@ namespace FluentMigrator.Wizard
         }
 
         private string GetDefaultArguments() =>
-            $"--connectionString {txtConnection.Text} --a {txtMigrations.Text} --provider {txtProvider.Text} --context {txtContext.Text} ";
+            $"--connectionString \"{txtConnection.Text}\" --a {txtMigrations.Text} --provider {txtProvider.Text} --context {txtContext.Text} ";
 
         private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new AboutForm())
             {
                 form.ShowDialog();
+            }
+        }
+
+        private void btnSelectConsole_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Migrate Console (*.exe)|*.exe";
+            dialog.Title = "Select the Migrate Console";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtConsole.Text = dialog.FileName;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "FluentMigrator Assembly (*.dll)|*.dll";
+            dialog.Title = "Select the FluentMigrator Assembly";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtMigrator.Text = dialog.FileName;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "FluentMigrator.Runner Assembly (*.dll)|*.dll";
+            dialog.Title = "Select the FluentMigrator.Runner Assembly";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtRunner.Text = dialog.FileName;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Migrations Assembly (*.dll)|*.dll";
+            dialog.Title = "Select the Assembly containing the migrations";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtMigrations.Text = dialog.FileName;
             }
         }
     }

@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,34 +53,22 @@
             this.panel1.Size = new System.Drawing.Size(386, 84);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // lblVersion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Developed by:";
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(118, 56);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(0, 13);
+            this.lblVersion.TabIndex = 5;
             // 
-            // linkLabel1
+            // label3
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(119, 9);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(116, 13);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Douglas Zanco Franco";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Source Code:";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 56);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Version: ";
             // 
             // linkLabel2
             // 
@@ -93,22 +81,34 @@
             this.linkLabel2.Text = "http://github.com/dzfweb/fluentmigratorwizard";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
-            // label3
+            // label2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 56);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Version: ";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Source Code:";
             // 
-            // lblVersion
+            // linkLabel1
             // 
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(118, 56);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(0, 13);
-            this.lblVersion.TabIndex = 5;
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(119, 9);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(116, 13);
+            this.linkLabel1.TabIndex = 1;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Douglas Zanco Franco";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Developed by:";
             // 
             // AboutForm
             // 
@@ -120,7 +120,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutForm";
-            this.Text = "AboutForm";
+            this.Text = "FluentMigrator Wizard";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

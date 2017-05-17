@@ -31,12 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Geral = new System.Windows.Forms.TabPage();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.Options = new System.Windows.Forms.GroupBox();
             this.btnArgument = new System.Windows.Forms.Button();
             this.txtArguments = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.cbxVerbose = new System.Windows.Forms.CheckBox();
             this.btnDownAll = new System.Windows.Forms.Button();
+            this.cbxVerbose = new System.Windows.Forms.CheckBox();
             this.btnList = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
@@ -64,7 +65,10 @@
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnSelectConsole = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Geral.SuspendLayout();
             this.Options.SuspendLayout();
@@ -103,6 +107,17 @@
             this.Geral.TabIndex = 0;
             this.Geral.Text = "General";
             this.Geral.UseVisualStyleBackColor = true;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(15, 440);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(191, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 16;
+            this.progressBar1.Visible = false;
             // 
             // Options
             // 
@@ -145,6 +160,17 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Arguments";
             // 
+            // btnDownAll
+            // 
+            this.btnDownAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDownAll.Location = new System.Drawing.Point(293, 440);
+            this.btnDownAll.Name = "btnDownAll";
+            this.btnDownAll.Size = new System.Drawing.Size(75, 23);
+            this.btnDownAll.TabIndex = 6;
+            this.btnDownAll.Text = "DOWN ALL";
+            this.btnDownAll.UseVisualStyleBackColor = true;
+            this.btnDownAll.Click += new System.EventHandler(this.btnDownAll_Click);
+            // 
             // cbxVerbose
             // 
             this.cbxVerbose.AutoSize = true;
@@ -156,17 +182,6 @@
             this.cbxVerbose.TabIndex = 14;
             this.cbxVerbose.Text = "Verbose";
             this.cbxVerbose.UseVisualStyleBackColor = true;
-            // 
-            // btnDownAll
-            // 
-            this.btnDownAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownAll.Location = new System.Drawing.Point(293, 440);
-            this.btnDownAll.Name = "btnDownAll";
-            this.btnDownAll.Size = new System.Drawing.Size(75, 23);
-            this.btnDownAll.TabIndex = 6;
-            this.btnDownAll.Text = "DOWN ALL";
-            this.btnDownAll.UseVisualStyleBackColor = true;
-            this.btnDownAll.Click += new System.EventHandler(this.btnDownAll_Click);
             // 
             // btnList
             // 
@@ -205,6 +220,10 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnSelectConsole);
             this.groupBox1.Controls.Add(this.txtContext);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtProvider);
@@ -232,7 +251,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContext.Location = new System.Drawing.Point(270, 264);
             this.txtContext.Name = "txtContext";
-            this.txtContext.Size = new System.Drawing.Size(238, 20);
+            this.txtContext.Size = new System.Drawing.Size(242, 20);
             this.txtContext.TabIndex = 13;
             // 
             // label7
@@ -268,7 +287,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConnection.Location = new System.Drawing.Point(9, 220);
             this.txtConnection.Name = "txtConnection";
-            this.txtConnection.Size = new System.Drawing.Size(499, 20);
+            this.txtConnection.Size = new System.Drawing.Size(505, 20);
             this.txtConnection.TabIndex = 9;
             // 
             // label5
@@ -286,7 +305,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMigrations.Location = new System.Drawing.Point(9, 175);
             this.txtMigrations.Name = "txtMigrations";
-            this.txtMigrations.Size = new System.Drawing.Size(499, 20);
+            this.txtMigrations.Size = new System.Drawing.Size(472, 20);
             this.txtMigrations.TabIndex = 7;
             // 
             // label4
@@ -304,7 +323,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRunner.Location = new System.Drawing.Point(9, 128);
             this.txtRunner.Name = "txtRunner";
-            this.txtRunner.Size = new System.Drawing.Size(499, 20);
+            this.txtRunner.Size = new System.Drawing.Size(472, 20);
             this.txtRunner.TabIndex = 5;
             // 
             // label3
@@ -322,7 +341,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMigrator.Location = new System.Drawing.Point(9, 81);
             this.txtMigrator.Name = "txtMigrator";
-            this.txtMigrator.Size = new System.Drawing.Size(499, 20);
+            this.txtMigrator.Size = new System.Drawing.Size(472, 20);
             this.txtMigrator.TabIndex = 3;
             // 
             // label2
@@ -340,7 +359,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConsole.Location = new System.Drawing.Point(9, 42);
             this.txtConsole.Name = "txtConsole";
-            this.txtConsole.Size = new System.Drawing.Size(499, 20);
+            this.txtConsole.Size = new System.Drawing.Size(472, 20);
             this.txtConsole.TabIndex = 1;
             // 
             // label1
@@ -397,14 +416,14 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.abrirToolStripMenuItem.Text = "Open";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // salvarToolStripMenuItem
             // 
             this.salvarToolStripMenuItem.Name = "salvarToolStripMenuItem";
-            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.salvarToolStripMenuItem.Text = "Save as ...";
             this.salvarToolStripMenuItem.Click += new System.EventHandler(this.salvarToolStripMenuItem_Click);
             // 
@@ -419,7 +438,7 @@
             // sobreToolStripMenuItem
             // 
             this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
-            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.sobreToolStripMenuItem.Text = "About";
             this.sobreToolStripMenuItem.Click += new System.EventHandler(this.sobreToolStripMenuItem_Click);
             // 
@@ -427,16 +446,49 @@
             // 
             this.backgroundWorker.WorkerReportsProgress = true;
             // 
-            // progressBar1
+            // btnSelectConsole
             // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(15, 440);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(191, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 16;
-            this.progressBar1.Visible = false;
+            this.btnSelectConsole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelectConsole.Location = new System.Drawing.Point(489, 39);
+            this.btnSelectConsole.Name = "btnSelectConsole";
+            this.btnSelectConsole.Size = new System.Drawing.Size(25, 23);
+            this.btnSelectConsole.TabIndex = 17;
+            this.btnSelectConsole.Text = "...";
+            this.btnSelectConsole.UseVisualStyleBackColor = true;
+            this.btnSelectConsole.Click += new System.EventHandler(this.btnSelectConsole_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(489, 78);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(489, 125);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(25, 23);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "...";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(489, 172);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(25, 23);
+            this.button3.TabIndex = 20;
+            this.button3.Text = "...";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Main
             // 
@@ -503,6 +555,10 @@
         private System.Windows.Forms.CheckBox cbxVerbose;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button btnSelectConsole;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
