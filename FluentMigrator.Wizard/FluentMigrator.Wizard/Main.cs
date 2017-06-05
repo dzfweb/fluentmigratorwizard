@@ -1,7 +1,6 @@
 ﻿using IniParser;
 using IniParser.Model;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -14,13 +13,15 @@ namespace FluentMigrator.Wizard
         private string formTitle = "FluentMigrator Wizard";
         private FileIniDataParser parser = new FileIniDataParser();
         private string arguments = string.Empty;
-        delegate void updateDelegate(string output);
-        delegate void updateProgressBarDelegate(bool visible);
+
+        private delegate void updateDelegate(string output);
+
+        private delegate void updateProgressBarDelegate(bool visible);
+        private delegate void updateSelectedTabIndex(int tabIndex);
 
         public Main()
         {
             InitializeComponent();
-
         }
 
         private void Main_Load(object sender, System.EventArgs e)
@@ -29,21 +30,35 @@ namespace FluentMigrator.Wizard
             backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
         }
 
-
         private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Process executed successfuly!");
         }
 
         private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            UpdateProgressBar(true);
+            try
+            {
+                UpdateProgressBar(true);
+                ExecuteProcess();
+            }
+            catch (Exception ex)
+            {
+                PrintToOutput(ex.Message);
+                UpdateProgressBar(false);
+            }
+        }
 
-            var result = ExecuteProcess();
-
-            PrintToOutput(result.Output);
-
-            UpdateProgressBar(false);
+        private void ChangeToOutputTab(int tabIndex)
+        {
+            if (tabControl1.InvokeRequired)
+            {
+                tabControl1.Invoke(new updateSelectedTabIndex(ChangeToOutputTab), tabIndex);
+            }
+            else
+            {
+                if (tabControl1.SelectedIndex != tabIndex)
+                    tabControl1.SelectedIndex = 1;
+            }
         }
 
         private void abrirToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -143,7 +158,6 @@ namespace FluentMigrator.Wizard
             }
         }
 
-
         private void btnList_Click(object sender, EventArgs e)
         {
             if (!IsWorkerBusy())
@@ -164,24 +178,26 @@ namespace FluentMigrator.Wizard
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            if (!IsWorkerBusy())
+            var confirmResult = MessageBox.Show("Are you sure to rollback one version ??",
+                                     "Confirm rollback!!",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
             {
-                arguments = GetDefaultArguments() + " --t=rollback";
-                backgroundWorker.RunWorkerAsync();
+                if (!IsWorkerBusy())
+                {
+                    arguments = GetDefaultArguments() + " --t=rollback";
+                    backgroundWorker.RunWorkerAsync();
+                }
             }
         }
 
-
-        private ProcessModel ExecuteProcess()
+        private void ExecuteProcess()
         {
             try
             {
                 Process p = new Process();
                 // Redirect the output stream of the child process.
-                p.StartInfo.UseShellExecute = false;
-                p.StartInfo.RedirectStandardOutput = true;
                 p.StartInfo.FileName = txtConsole.Text;
-
 
                 if (cbxVerbose.CheckState == CheckState.Checked)
                     p.StartInfo.Arguments += " /verbose ";
@@ -189,37 +205,59 @@ namespace FluentMigrator.Wizard
                 p.StartInfo.Arguments = arguments;
 
 
-                p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 p.StartInfo.CreateNoWindow = true;
+                p.StartInfo.ErrorDialog = false;
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardError = true;
+                p.StartInfo.RedirectStandardInput = true;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.EnableRaisingEvents = true;
+                p.OutputDataReceived += process_OutputDataReceived;
+                p.ErrorDataReceived += process_OutputDataReceived;
+                p.Exited += process_Exited;
                 p.Start();
-                string output = p.StandardOutput.ReadToEnd();
-                p.WaitForExit();
-                return new ProcessModel()
-                {
-                    Output = output,
-                    Message = "Process executed successfuly!",
-                    Success = true
-                };
+                p.BeginErrorReadLine();
+                p.BeginOutputReadLine();
 
             }
             catch (Exception ex)
             {
-                return new ProcessModel()
-                {
-                    Output = ex.Message,
-                    Message = "An error has ocurred",
-                    Success = false
-                };
+                PrintToOutput(ex.Message);
             }
+        }
 
+        void process_Exited(object sender, System.EventArgs e)
+        {
+            UpdateProgressBar(false);
+        }
+
+        void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            ChangeToOutputTab(1);
+            PrintToOutput(e.Data);
+            UpdateProgressBar(false);
+        }
+
+        void process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            ChangeToOutputTab(1);
+            PrintToOutput(e.Data);
+            UpdateProgressBar(false);
         }
 
         private void btnDownAll_Click(object sender, EventArgs e)
         {
-            if (!IsWorkerBusy())
+            var confirmResult = MessageBox.Show("Are you sure to rollback all versions ??",
+                                     "Confirm rollback!!",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
             {
-                arguments = GetDefaultArguments() + "--t=rollback:all";
-                backgroundWorker.RunWorkerAsync();
+
+                if (!IsWorkerBusy())
+                {
+                    arguments = GetDefaultArguments() + "--t=rollback:all";
+                    backgroundWorker.RunWorkerAsync();
+                }
             }
         }
 
