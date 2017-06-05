@@ -13,10 +13,12 @@ namespace FluentMigrator.Wizard
         private string formTitle = "FluentMigrator Wizard";
         private FileIniDataParser parser = new FileIniDataParser();
         private string arguments = string.Empty;
+        private Process p;
 
         private delegate void updateDelegate(string output);
 
         private delegate void updateProgressBarDelegate(bool visible);
+        private delegate void updateCancelButtonDelegate(bool visible);
         private delegate void updateSelectedTabIndex(int tabIndex);
 
         public Main()
@@ -39,6 +41,7 @@ namespace FluentMigrator.Wizard
             try
             {
                 UpdateProgressBar(true);
+                UpdateCancelButton(true);
                 ExecuteProcess();
             }
             catch (Exception ex)
@@ -91,6 +94,18 @@ namespace FluentMigrator.Wizard
             else
             {
                 progressBar1.Visible = visible;
+            }
+        }
+
+        private void UpdateCancelButton(bool visible)
+        {
+            if (btnCancel.InvokeRequired)
+            {
+                btnCancel.Invoke(new updateCancelButtonDelegate(UpdateCancelButton), visible);
+            }
+            else
+            {
+                btnCancel.Visible = visible;
             }
         }
 
@@ -195,7 +210,7 @@ namespace FluentMigrator.Wizard
         {
             try
             {
-                Process p = new Process();
+                p = new Process();
                 // Redirect the output stream of the child process.
                 p.StartInfo.FileName = txtConsole.Text;
 
@@ -229,20 +244,19 @@ namespace FluentMigrator.Wizard
         void process_Exited(object sender, System.EventArgs e)
         {
             UpdateProgressBar(false);
+            UpdateCancelButton(false);
         }
 
         void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
             ChangeToOutputTab(1);
             PrintToOutput(e.Data);
-            UpdateProgressBar(false);
         }
 
         void process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
             ChangeToOutputTab(1);
             PrintToOutput(e.Data);
-            UpdateProgressBar(false);
         }
 
         private void btnDownAll_Click(object sender, EventArgs e)
@@ -327,6 +341,12 @@ namespace FluentMigrator.Wizard
             {
                 txtMigrations.Text = dialog.FileName;
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            PrintToOutput("Process canceled!");
+            p.Kill();
         }
     }
 }
