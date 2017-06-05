@@ -47,15 +47,17 @@ namespace FluentMigrator.Wizard
             catch (Exception ex)
             {
                 PrintToOutput(ex.Message);
+                UpdateCancelButton(false);
                 UpdateProgressBar(false);
+                ChangeTab(1);
             }
         }
 
-        private void ChangeToOutputTab(int tabIndex)
+        private void ChangeTab(int tabIndex)
         {
             if (tabControl1.InvokeRequired)
             {
-                tabControl1.Invoke(new updateSelectedTabIndex(ChangeToOutputTab), tabIndex);
+                tabControl1.Invoke(new updateSelectedTabIndex(ChangeTab), tabIndex);
             }
             else
             {
@@ -208,37 +210,30 @@ namespace FluentMigrator.Wizard
 
         private void ExecuteProcess()
         {
-            try
-            {
-                p = new Process();
-                // Redirect the output stream of the child process.
-                p.StartInfo.FileName = txtConsole.Text;
+            p = new Process();
+            // Redirect the output stream of the child process.
+            p.StartInfo.FileName = txtConsole.Text;
 
-                if (cbxVerbose.CheckState == CheckState.Checked)
-                    p.StartInfo.Arguments += " /verbose ";
+            if (cbxVerbose.CheckState == CheckState.Checked)
+                p.StartInfo.Arguments += " /verbose ";
 
-                p.StartInfo.Arguments = arguments;
+            p.StartInfo.Arguments = arguments;
 
 
-                p.StartInfo.CreateNoWindow = true;
-                p.StartInfo.ErrorDialog = false;
-                p.StartInfo.UseShellExecute = false;
-                p.StartInfo.RedirectStandardError = true;
-                p.StartInfo.RedirectStandardInput = true;
-                p.StartInfo.RedirectStandardOutput = true;
-                p.EnableRaisingEvents = true;
-                p.OutputDataReceived += process_OutputDataReceived;
-                p.ErrorDataReceived += process_OutputDataReceived;
-                p.Exited += process_Exited;
-                p.Start();
-                p.BeginErrorReadLine();
-                p.BeginOutputReadLine();
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.ErrorDialog = false;
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardError = true;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.EnableRaisingEvents = true;
+            p.OutputDataReceived += process_OutputDataReceived;
+            p.ErrorDataReceived += process_OutputDataReceived;
+            p.Exited += process_Exited;
+            p.Start();
+            p.BeginErrorReadLine();
+            p.BeginOutputReadLine();
 
-            }
-            catch (Exception ex)
-            {
-                PrintToOutput(ex.Message);
-            }
         }
 
         void process_Exited(object sender, System.EventArgs e)
@@ -249,13 +244,13 @@ namespace FluentMigrator.Wizard
 
         void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            ChangeToOutputTab(1);
+            ChangeTab(1);
             PrintToOutput(e.Data);
         }
 
         void process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
-            ChangeToOutputTab(1);
+            ChangeTab(1);
             PrintToOutput(e.Data);
         }
 
