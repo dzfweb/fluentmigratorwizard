@@ -1,5 +1,5 @@
-﻿using IniParser;
-using IniParser.Model;
+﻿using FluentMigrator.Wizard.IniParser;
+using FluentMigrator.Wizard.IniParser.Model;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -10,7 +10,7 @@ namespace FluentMigrator.Wizard
     public partial class Main : Form
     {
         private IniData data = null;
-        private string formTitle = "FluentMigrator Wizard";
+        private string formTitle = "Fluent Migrator Wizard";
         private FileIniDataParser parser = new FileIniDataParser();
         private string arguments = string.Empty;
         private Process p;
@@ -154,6 +154,7 @@ namespace FluentMigrator.Wizard
                     parser.WriteFile(dialog.FileName, data);
 
                     PrintToOutput($"File save: {dialog.FileName}");
+                    this.Text = $"{formTitle} - ({dialog.FileName})";
                 }
                 catch (Exception ex)
                 {

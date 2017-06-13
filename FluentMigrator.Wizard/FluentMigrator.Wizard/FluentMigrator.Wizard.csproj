@@ -35,9 +35,6 @@
     <ApplicationIcon>001-magic-trick.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="INIFileParser, Version=2.4.0.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
-      <HintPath>..\packages\ini-parser.2.4.0\lib\net20\INIFileParser.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -57,6 +54,23 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IniFileParser\Exceptions\ParsingException.cs" />
+    <Compile Include="IniFileParser\FileIniParser.cs" />
+    <Compile Include="IniFileParser\Helpers\Assert.cs" />
+    <Compile Include="IniFileParser\Model\Configuration\ConcatenateDuplicatedKeysIniParserConfiguration.cs" />
+    <Compile Include="IniFileParser\Model\Configuration\IniParserConfiguration.cs" />
+    <Compile Include="IniFileParser\Model\Formatting\DefaultIniDataFormatter.cs" />
+    <Compile Include="IniFileParser\Model\Formatting\IIniDataFormatter.cs" />
+    <Compile Include="IniFileParser\Model\IniData.cs" />
+    <Compile Include="IniFileParser\Model\IniDataCaseInsensitive.cs" />
+    <Compile Include="IniFileParser\Model\KeyData.cs" />
+    <Compile Include="IniFileParser\Model\KeyDataCollection.cs" />
+    <Compile Include="IniFileParser\Model\SectionData.cs" />
+    <Compile Include="IniFileParser\Model\SectionDataCollection.cs" />
+    <Compile Include="IniFileParser\Parser\ConcatenateDuplicatedKeysIniDataParser.cs" />
+    <Compile Include="IniFileParser\Parser\IniDataParser.cs" />
+    <Compile Include="IniFileParser\StreamIniDataParser.cs" />
+    <Compile Include="IniFileParser\StringIniParser.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,7 +95,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
+    <None Include="IniFileParser\INIFileParser.nuspec" />
+    <None Include="IniFileParser\Model\IniData.cs.rej" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="001-magic-trick.ico" />
+    <Content Include="IniFileParser\INIFileParser.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
