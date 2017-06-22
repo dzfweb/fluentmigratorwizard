@@ -215,11 +215,10 @@ namespace FluentMigrator.Wizard
             // Redirect the output stream of the child process.
             p.StartInfo.FileName = txtConsole.Text;
 
-            if (cbxVerbose.CheckState == CheckState.Checked)
-                p.StartInfo.Arguments += " /verbose ";
-
             p.StartInfo.Arguments = arguments;
 
+            if (cbxVerbose.CheckState == CheckState.Checked)
+                p.StartInfo.Arguments += " --verbose=true ";
 
             p.StartInfo.CreateNoWindow = true;
             p.StartInfo.ErrorDialog = false;
