@@ -61,6 +61,21 @@ namespace FluentMigrator.Wizard {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to --task, -t=VALUE (optional)
+        ///The task you want FluentMigrator to perform. Available choices are:
+        ///migrate:up
+        ///migrate (same as migrate:up)
+        ///migrate:down (used in conjunction with the --version switch. Warning: if you don’t supply --version this will revert all migrations)
+        ///rollback (per default this rollbacks one step. Use the --steps switch to rollback more steps)
+        ///rollback:toversion (used in conjuction with the --version switch. Will rollback all versions down to the specified version, not including the s [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Commands {
+            get {
+                return ResourceManager.GetString("Commands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap down_arrow_1 {

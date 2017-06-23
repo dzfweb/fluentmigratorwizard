@@ -54,6 +54,12 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommandsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommandsForm.Designer.cs">
+      <DependentUpon>CommandsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="IniFileParser\Exceptions\ParsingException.cs" />
     <Compile Include="IniFileParser\FileIniParser.cs" />
     <Compile Include="IniFileParser\Helpers\Assert.cs" />
@@ -88,6 +94,9 @@
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CommandsForm.resx">
+      <DependentUpon>CommandsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +122,7 @@
   <ItemGroup>
     <Content Include="001-magic-trick.ico" />
     <Content Include="IniFileParser\INIFileParser.csproj" />
+    <None Include="Resources\Commands.txt" />
     <None Include="Resources\down-arrow-1.png" />
     <None Include="Resources\up-arrow-1.png" />
     <None Include="Resources\orbit.png" />

@@ -343,5 +343,12 @@ namespace FluentMigrator.Wizard
             PrintToOutput("Process canceled!");
             p.Kill();
         }
+
+        private void commandsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new CommandsForm();
+            form.Show();
+
+        }
     }
 }
