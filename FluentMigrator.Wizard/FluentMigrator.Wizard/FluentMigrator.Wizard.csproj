@@ -80,21 +80,21 @@
     <Compile Include="ProcessModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="IniFileParser\INIFileParser.nuspec" />
     <None Include="IniFileParser\Model\IniData.cs.rej" />
     <None Include="Properties\Settings.settings">
@@ -113,6 +113,10 @@
   <ItemGroup>
     <Content Include="001-magic-trick.ico" />
     <Content Include="IniFileParser\INIFileParser.csproj" />
+    <None Include="Resources\down-arrow-1.png" />
+    <None Include="Resources\up-arrow-1.png" />
+    <None Include="Resources\orbit.png" />
+    <None Include="Resources\down-arrow-4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

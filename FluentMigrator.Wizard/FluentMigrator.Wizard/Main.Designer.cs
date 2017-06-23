@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Geral = new System.Windows.Forms.TabPage();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.Options = new System.Windows.Forms.GroupBox();
             this.btnArgument = new System.Windows.Forms.Button();
             this.txtArguments = new System.Windows.Forms.TextBox();
@@ -62,6 +61,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Console = new System.Windows.Forms.TabPage();
             this.txtOutput = new System.Windows.Forms.RichTextBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,17 +108,6 @@
             this.Geral.Text = "General";
             this.Geral.UseVisualStyleBackColor = true;
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(362, 24);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(191, 20);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 16;
-            this.progressBar1.Visible = false;
-            // 
             // Options
             // 
             this.Options.Controls.Add(this.btnArgument);
@@ -163,11 +152,14 @@
             // btnDownAll
             // 
             this.btnDownAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownAll.Location = new System.Drawing.Point(293, 440);
+            this.btnDownAll.Image = global::FluentMigrator.Wizard.Resource.down_arrow_4;
+            this.btnDownAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDownAll.Location = new System.Drawing.Point(230, 440);
             this.btnDownAll.Name = "btnDownAll";
-            this.btnDownAll.Size = new System.Drawing.Size(75, 23);
+            this.btnDownAll.Size = new System.Drawing.Size(96, 23);
             this.btnDownAll.TabIndex = 6;
             this.btnDownAll.Text = "DOWN ALL";
+            this.btnDownAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDownAll.UseVisualStyleBackColor = true;
             this.btnDownAll.Click += new System.EventHandler(this.btnDownAll_Click);
             // 
@@ -186,9 +178,11 @@
             // btnList
             // 
             this.btnList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnList.Location = new System.Drawing.Point(212, 440);
+            this.btnList.Image = global::FluentMigrator.Wizard.Resource.orbit;
+            this.btnList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnList.Location = new System.Drawing.Point(128, 440);
             this.btnList.Name = "btnList";
-            this.btnList.Size = new System.Drawing.Size(75, 23);
+            this.btnList.Size = new System.Drawing.Size(96, 23);
             this.btnList.TabIndex = 5;
             this.btnList.Text = "LIST";
             this.btnList.UseVisualStyleBackColor = true;
@@ -197,9 +191,11 @@
             // btnDown
             // 
             this.btnDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDown.Location = new System.Drawing.Point(374, 440);
+            this.btnDown.Image = global::FluentMigrator.Wizard.Resource.down_arrow_1;
+            this.btnDown.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDown.Location = new System.Drawing.Point(332, 440);
             this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(75, 23);
+            this.btnDown.Size = new System.Drawing.Size(96, 23);
             this.btnDown.TabIndex = 4;
             this.btnDown.Text = "DOWN";
             this.btnDown.UseVisualStyleBackColor = true;
@@ -208,9 +204,11 @@
             // btnUp
             // 
             this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUp.Location = new System.Drawing.Point(455, 440);
+            this.btnUp.Image = ((System.Drawing.Image)(resources.GetObject("btnUp.Image")));
+            this.btnUp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUp.Location = new System.Drawing.Point(434, 440);
             this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(75, 23);
+            this.btnUp.Size = new System.Drawing.Size(96, 23);
             this.btnUp.TabIndex = 3;
             this.btnUp.Text = "UP";
             this.btnUp.UseVisualStyleBackColor = true;
@@ -291,8 +289,7 @@
             // 
             // txtContext
             // 
-            this.txtContext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtContext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContext.Location = new System.Drawing.Point(270, 264);
             this.txtContext.Name = "txtContext";
             this.txtContext.Size = new System.Drawing.Size(242, 20);
@@ -300,6 +297,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(267, 248);
             this.label7.Name = "label7";
@@ -437,6 +435,17 @@
             this.txtOutput.TabIndex = 0;
             this.txtOutput.Text = "";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(362, 24);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(191, 20);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 16;
+            this.progressBar1.Visible = false;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -492,6 +501,8 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Location = new System.Drawing.Point(281, 24);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 20);
