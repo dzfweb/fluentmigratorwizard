@@ -67,10 +67,10 @@
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salvarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.Geral.SuspendLayout();
             this.Options.SuspendLayout();
@@ -89,22 +89,18 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(544, 495);
+            this.tabControl1.Size = new System.Drawing.Size(544, 440);
             this.tabControl1.TabIndex = 1;
             // 
             // Geral
             // 
             this.Geral.Controls.Add(this.Options);
-            this.Geral.Controls.Add(this.btnDownAll);
             this.Geral.Controls.Add(this.cbxVerbose);
-            this.Geral.Controls.Add(this.btnList);
-            this.Geral.Controls.Add(this.btnDown);
-            this.Geral.Controls.Add(this.btnUp);
             this.Geral.Controls.Add(this.groupBox1);
             this.Geral.Location = new System.Drawing.Point(4, 22);
             this.Geral.Name = "Geral";
             this.Geral.Padding = new System.Windows.Forms.Padding(3);
-            this.Geral.Size = new System.Drawing.Size(536, 469);
+            this.Geral.Size = new System.Drawing.Size(536, 414);
             this.Geral.TabIndex = 0;
             this.Geral.Text = "General";
             this.Geral.UseVisualStyleBackColor = true;
@@ -155,7 +151,7 @@
             this.btnDownAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownAll.Image = global::FluentMigrator.Wizard.Resource.down_arrow_4;
             this.btnDownAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDownAll.Location = new System.Drawing.Point(230, 440);
+            this.btnDownAll.Location = new System.Drawing.Point(252, 473);
             this.btnDownAll.Name = "btnDownAll";
             this.btnDownAll.Size = new System.Drawing.Size(96, 23);
             this.btnDownAll.TabIndex = 6;
@@ -169,7 +165,7 @@
             this.cbxVerbose.AutoSize = true;
             this.cbxVerbose.Checked = true;
             this.cbxVerbose.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxVerbose.Location = new System.Drawing.Point(459, 399);
+            this.cbxVerbose.Location = new System.Drawing.Point(459, 393);
             this.cbxVerbose.Name = "cbxVerbose";
             this.cbxVerbose.Size = new System.Drawing.Size(65, 17);
             this.cbxVerbose.TabIndex = 14;
@@ -181,7 +177,7 @@
             this.btnList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnList.Image = global::FluentMigrator.Wizard.Resource.orbit;
             this.btnList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnList.Location = new System.Drawing.Point(128, 440);
+            this.btnList.Location = new System.Drawing.Point(150, 473);
             this.btnList.Name = "btnList";
             this.btnList.Size = new System.Drawing.Size(96, 23);
             this.btnList.TabIndex = 5;
@@ -194,7 +190,7 @@
             this.btnDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDown.Image = global::FluentMigrator.Wizard.Resource.down_arrow_1;
             this.btnDown.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDown.Location = new System.Drawing.Point(332, 440);
+            this.btnDown.Location = new System.Drawing.Point(354, 473);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(96, 23);
             this.btnDown.TabIndex = 4;
@@ -207,7 +203,7 @@
             this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUp.Image = ((System.Drawing.Image)(resources.GetObject("btnUp.Image")));
             this.btnUp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUp.Location = new System.Drawing.Point(434, 440);
+            this.btnUp.Location = new System.Drawing.Point(456, 473);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(96, 23);
             this.btnUp.TabIndex = 3;
@@ -420,7 +416,7 @@
             this.Console.Location = new System.Drawing.Point(4, 22);
             this.Console.Name = "Console";
             this.Console.Padding = new System.Windows.Forms.Padding(3);
-            this.Console.Size = new System.Drawing.Size(536, 469);
+            this.Console.Size = new System.Drawing.Size(536, 418);
             this.Console.TabIndex = 1;
             this.Console.Text = "Output";
             this.Console.UseVisualStyleBackColor = true;
@@ -432,14 +428,13 @@
             this.txtOutput.Location = new System.Drawing.Point(3, 3);
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
-            this.txtOutput.Size = new System.Drawing.Size(530, 463);
+            this.txtOutput.Size = new System.Drawing.Size(530, 412);
             this.txtOutput.TabIndex = 0;
             this.txtOutput.Text = "";
             // 
             // progressBar1
             // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(362, 24);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(191, 20);
@@ -490,10 +485,17 @@
             this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ajudaToolStripMenuItem.Text = "Help";
             // 
+            // commandsToolStripMenuItem
+            // 
+            this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
+            this.commandsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.commandsToolStripMenuItem.Text = "Commands";
+            this.commandsToolStripMenuItem.Click += new System.EventHandler(this.commandsToolStripMenuItem_Click);
+            // 
             // sobreToolStripMenuItem
             // 
             this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
-            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.sobreToolStripMenuItem.Text = "About";
             this.sobreToolStripMenuItem.Click += new System.EventHandler(this.sobreToolStripMenuItem_Click);
             // 
@@ -503,8 +505,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Location = new System.Drawing.Point(281, 24);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 20);
@@ -514,22 +515,19 @@
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.button4_Click);
             // 
-            // commandsToolStripMenuItem
-            // 
-            this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
-            this.commandsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.commandsToolStripMenuItem.Text = "Commands";
-            this.commandsToolStripMenuItem.Click += new System.EventHandler(this.commandsToolStripMenuItem_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 534);
+            this.ClientSize = new System.Drawing.Size(568, 508);
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnDownAll);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.btnList);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUp);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
