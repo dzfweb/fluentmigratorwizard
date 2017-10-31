@@ -279,8 +279,12 @@ namespace FluentMigrator.Wizard
             }
         }
 
+        private string GetContext() =>
+            string.IsNullOrEmpty(txtContext.Text) ? "" : $"--context {txtContext.Text}";
+
         private string GetDefaultArguments() =>
-            $"--connectionString \"{txtConnection.Text}\" --a {txtMigrations.Text} --provider {txtProvider.Text} --context {txtContext.Text} ";
+            $"--connectionString \"{txtConnection.Text}\" --a {txtMigrations.Text} --provider {txtProvider.Text} {GetContext()}";
+
 
         private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
         {
