@@ -14,11 +14,14 @@ namespace FluentMigrator.Wizard
         private FileIniDataParser parser = new FileIniDataParser();
         private string arguments = string.Empty;
         private Process p;
+        private int outputLastLength = 0;
 
         private delegate void updateDelegate(string output);
 
         private delegate void updateProgressBarDelegate(bool visible);
+
         private delegate void updateCancelButtonDelegate(bool visible);
+
         private delegate void updateSelectedTabIndex(int tabIndex);
 
         public Main()
@@ -122,6 +125,8 @@ namespace FluentMigrator.Wizard
                 txtOutput.AppendText(Environment.NewLine);
                 txtOutput.AppendText($"{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")}: {text}");
                 txtOutput.ScrollToCaret();
+                SyntaxHighlight.Apply(txtOutput, outputLastLength);
+                outputLastLength = txtOutput.Text.Length;
             }
         }
 
@@ -233,22 +238,21 @@ namespace FluentMigrator.Wizard
             p.Start();
             p.BeginErrorReadLine();
             p.BeginOutputReadLine();
-
         }
 
-        void process_Exited(object sender, System.EventArgs e)
+        private void process_Exited(object sender, System.EventArgs e)
         {
             UpdateProgressBar(false);
             UpdateCancelButton(false);
         }
 
-        void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        private void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
             ChangeTab(1);
             PrintToOutput(e.Data);
         }
 
-        void process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        private void process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
             ChangeTab(1);
             PrintToOutput(e.Data);
@@ -261,7 +265,6 @@ namespace FluentMigrator.Wizard
                                      MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-
                 if (!IsWorkerBusy())
                 {
                     arguments = GetDefaultArguments() + "--t=rollback:all";
@@ -284,7 +287,6 @@ namespace FluentMigrator.Wizard
 
         private string GetDefaultArguments() =>
             $"--connectionString \"{txtConnection.Text}\" --a {txtMigrations.Text} --provider {txtProvider.Text} {GetContext()}";
-
 
         private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -352,7 +354,21 @@ namespace FluentMigrator.Wizard
         {
             var form = new CommandsForm();
             form.Show();
+        }
 
+        private void txtOutput_TextChanged(object sender, EventArgs e)
+        {
+            SyntaxHighlight.Apply(txtOutput);
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            txtOutput.Clear();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            txtOutput.Clear();
         }
     }
 }
