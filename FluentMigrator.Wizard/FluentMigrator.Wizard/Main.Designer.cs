@@ -35,11 +35,7 @@
             this.btnArgument = new System.Windows.Forms.Button();
             this.txtArguments = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnDownAll = new System.Windows.Forms.Button();
             this.cbxVerbose = new System.Windows.Forms.CheckBox();
-            this.btnList = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.btnUp = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -61,6 +57,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Console = new System.Windows.Forms.TabPage();
             this.txtOutput = new System.Windows.Forms.RichTextBox();
+            this.btnDownAll = new System.Windows.Forms.Button();
+            this.btnList = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +71,10 @@
             this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.Geral.SuspendLayout();
             this.Options.SuspendLayout();
@@ -146,20 +150,6 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Arguments";
             // 
-            // btnDownAll
-            // 
-            this.btnDownAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownAll.Image = global::FluentMigrator.Wizard.Resource.down_arrow_4;
-            this.btnDownAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDownAll.Location = new System.Drawing.Point(252, 473);
-            this.btnDownAll.Name = "btnDownAll";
-            this.btnDownAll.Size = new System.Drawing.Size(96, 23);
-            this.btnDownAll.TabIndex = 6;
-            this.btnDownAll.Text = "DOWN ALL";
-            this.btnDownAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDownAll.UseVisualStyleBackColor = true;
-            this.btnDownAll.Click += new System.EventHandler(this.btnDownAll_Click);
-            // 
             // cbxVerbose
             // 
             this.cbxVerbose.AutoSize = true;
@@ -171,45 +161,6 @@
             this.cbxVerbose.TabIndex = 14;
             this.cbxVerbose.Text = "Verbose";
             this.cbxVerbose.UseVisualStyleBackColor = true;
-            // 
-            // btnList
-            // 
-            this.btnList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnList.Image = global::FluentMigrator.Wizard.Resource.orbit;
-            this.btnList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnList.Location = new System.Drawing.Point(150, 473);
-            this.btnList.Name = "btnList";
-            this.btnList.Size = new System.Drawing.Size(96, 23);
-            this.btnList.TabIndex = 5;
-            this.btnList.Text = "LIST";
-            this.btnList.UseVisualStyleBackColor = true;
-            this.btnList.Click += new System.EventHandler(this.btnList_Click);
-            // 
-            // btnDown
-            // 
-            this.btnDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDown.Image = global::FluentMigrator.Wizard.Resource.down_arrow_1;
-            this.btnDown.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDown.Location = new System.Drawing.Point(354, 473);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(96, 23);
-            this.btnDown.TabIndex = 4;
-            this.btnDown.Text = "DOWN";
-            this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
-            // btnUp
-            // 
-            this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUp.Image = ((System.Drawing.Image)(resources.GetObject("btnUp.Image")));
-            this.btnUp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUp.Location = new System.Drawing.Point(456, 473);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(96, 23);
-            this.btnUp.TabIndex = 3;
-            this.btnUp.Text = "UP";
-            this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // groupBox1
             // 
@@ -416,21 +367,77 @@
             this.Console.Location = new System.Drawing.Point(4, 22);
             this.Console.Name = "Console";
             this.Console.Padding = new System.Windows.Forms.Padding(3);
-            this.Console.Size = new System.Drawing.Size(536, 418);
+            this.Console.Size = new System.Drawing.Size(536, 414);
             this.Console.TabIndex = 1;
             this.Console.Text = "Output";
             this.Console.UseVisualStyleBackColor = true;
             // 
             // txtOutput
             // 
+            this.txtOutput.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtOutput.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOutput.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtOutput.Location = new System.Drawing.Point(3, 3);
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
-            this.txtOutput.Size = new System.Drawing.Size(530, 412);
+            this.txtOutput.Size = new System.Drawing.Size(530, 408);
             this.txtOutput.TabIndex = 0;
             this.txtOutput.Text = "";
+            // 
+            // btnDownAll
+            // 
+            this.btnDownAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDownAll.Image = global::FluentMigrator.Wizard.Resource.down_arrow_4;
+            this.btnDownAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDownAll.Location = new System.Drawing.Point(252, 473);
+            this.btnDownAll.Name = "btnDownAll";
+            this.btnDownAll.Size = new System.Drawing.Size(96, 23);
+            this.btnDownAll.TabIndex = 6;
+            this.btnDownAll.Text = "DOWN ALL";
+            this.btnDownAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDownAll.UseVisualStyleBackColor = true;
+            this.btnDownAll.Click += new System.EventHandler(this.btnDownAll_Click);
+            // 
+            // btnList
+            // 
+            this.btnList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnList.Image = global::FluentMigrator.Wizard.Resource.orbit;
+            this.btnList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnList.Location = new System.Drawing.Point(150, 473);
+            this.btnList.Name = "btnList";
+            this.btnList.Size = new System.Drawing.Size(96, 23);
+            this.btnList.TabIndex = 5;
+            this.btnList.Text = "LIST";
+            this.btnList.UseVisualStyleBackColor = true;
+            this.btnList.Click += new System.EventHandler(this.btnList_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDown.Image = global::FluentMigrator.Wizard.Resource.down_arrow_1;
+            this.btnDown.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDown.Location = new System.Drawing.Point(354, 473);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(96, 23);
+            this.btnDown.TabIndex = 4;
+            this.btnDown.Text = "DOWN";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUp.Image = ((System.Drawing.Image)(resources.GetObject("btnUp.Image")));
+            this.btnUp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUp.Location = new System.Drawing.Point(456, 473);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(96, 23);
+            this.btnUp.TabIndex = 3;
+            this.btnUp.Text = "UP";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // progressBar1
             // 
@@ -457,7 +464,11 @@
             // 
             this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.abrirToolStripMenuItem,
-            this.salvarToolStripMenuItem});
+            this.salvarToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.toolStripMenuItem1,
+            this.toolStripSeparator2,
+            this.exitToolStripMenuItem});
             this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
             this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.arquivoToolStripMenuItem.Text = "File";
@@ -515,14 +526,38 @@
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.button4_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "Clear Output";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 508);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnDownAll);
             this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.btnDownAll);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnList);
             this.Controls.Add(this.menuStrip1);
@@ -592,6 +627,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ToolStripMenuItem commandsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 
