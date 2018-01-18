@@ -5,6 +5,7 @@ User interface for fluent migrator CLI.
 ## Download
 [https://github.com/dzfweb/fluentmigratorwizard/raw/master/binary/FluentMigrator.Wizard.zip](https://github.com/dzfweb/fluentmigratorwizard/raw/master/binary/FluentMigrator.Wizard.zip)
 
-![print-1](https://cdn.pbrd.co/images/79wqJ4vpB.png)
 
-![print-2](https://cdn.pbrd.co/images/79x2ikvp6.png)
+![print-1](print/fluent_migrator.png)
+![print-2](print/fluent_migrator_2.png)
+
