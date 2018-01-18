@@ -33,7 +33,12 @@ namespace FluentMigrator.Wizard
             string dates = @"\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}:\d{2}";
             MatchCollection datesMatches = Regex.Matches(currentText, dates);
 
+            // getting strings
+            string errors = @"!!! (.*)";
+            MatchCollection errorsMatches = Regex.Matches(currentText, errors);
+
             Color originalColor = Color.Black;
+            Color originalBackColor = txtOutput.BackColor;
 
             // scanning...
             foreach (Match m in keywordMatches)
@@ -82,9 +87,18 @@ namespace FluentMigrator.Wizard
                 txtOutput.SelectionFont = new Font(txtOutput.Font, FontStyle.Italic);
             }
 
+            foreach (Match m in errorsMatches)
+            {
+                txtOutput.SelectionStart = start + m.Index;
+                txtOutput.SelectionLength = m.Length;
+                txtOutput.SelectionColor = Color.OrangeRed;
+                txtOutput.SelectionFont = new Font(txtOutput.Font, FontStyle.Bold);
+            }
+
             // restoring the original colors, for further writing
             txtOutput.SelectionStart = txtOutput.Text.Length;
             txtOutput.SelectionColor = originalColor;
+            txtOutput.SelectionBackColor = originalBackColor;
             txtOutput.SelectionFont = new Font(txtOutput.Font, FontStyle.Regular);
 
             txtOutput.ScrollToCaret();
