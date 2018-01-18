@@ -8,81 +8,86 @@ namespace FluentMigrator.Wizard
     {
         internal static void Apply(RichTextBox txtOutput, int start = 0)
         {
+            var currentText = txtOutput.Text.Substring(start);
+
             // getting keywords/functions
-            string keywords = @"\b(public|private|partial|static|namespace|class|using|void|foreach|in)\b";
-            MatchCollection keywordMatches = Regex.Matches(txtOutput.Text, keywords);
+            string keywords = @"\b(DECLARE|SET|EXEC|AND|OR|DROP|INTO|SELECT|FROM|WHERE|ORDER|BY|DELETE|INSERT|VALUES|IN|ALTER|TABLE|COLUMN|INDEX|CONSTRAINT|PRIMARY|KEY|FOREIGN)\b";
+            MatchCollection keywordMatches = Regex.Matches(currentText, keywords);
 
             // getting types/classes from the text
-            string types = @"([-*+!=><\[\]]+)";
-            MatchCollection typeMatches = Regex.Matches(txtOutput.Text, types);
+            string types = @"([\'-*+!=><\[\]\(\)]+)";
+            MatchCollection typeMatches = Regex.Matches(currentText, types);
 
             // getting versions
             string versions = @"[1-9][0-9]{9,15}:";
-            MatchCollection versionsMatches = Regex.Matches(txtOutput.Text, versions);
+            MatchCollection versionsMatches = Regex.Matches(currentText, versions);
 
             // getting comments (inline or multiline)
-            string comments = @"(\/\/.+?$|\/\*.+?\*\/)";
-            MatchCollection commentMatches = Regex.Matches(txtOutput.Text, comments, RegexOptions.Multiline);
+            string comments = @"(\-\-.+?$|\/\*.+?\*\/)";
+            MatchCollection commentMatches = Regex.Matches(currentText, comments, RegexOptions.Multiline);
 
             // getting strings
-            string strings = "\".+?\"";
-            MatchCollection stringMatches = Regex.Matches(txtOutput.Text, strings);
+            string strings = @"\b(Beginning|Committing|Migrations|reverting|current|Task|task|completed|Completed|Begin|begin|Transaction|transaction|Rolling|back)\b";
+            MatchCollection stringMatches = Regex.Matches(currentText, strings);
 
-            // saving the original caret position + forecolor
-            int originalIndex = txtOutput.SelectionStart;
-            int originalLength = txtOutput.SelectionLength;
+            string dates = @"\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}:\d{2}";
+            MatchCollection datesMatches = Regex.Matches(currentText, dates);
+
             Color originalColor = Color.Black;
-
-            // removes any previous highlighting (so modified words won't remain highlighted)
-            txtOutput.SelectionStart = start;
-            txtOutput.SelectionLength = txtOutput.Text.Length;
-            txtOutput.SelectionColor = originalColor;
 
             // scanning...
             foreach (Match m in keywordMatches)
             {
-                txtOutput.SelectionStart = m.Index;
+                txtOutput.SelectionStart = start + m.Index;
                 txtOutput.SelectionLength = m.Length;
-                txtOutput.SelectionColor = Color.Blue;
+                txtOutput.SelectionColor = Color.Orange;
             }
 
             foreach (Match m in typeMatches)
             {
-                txtOutput.SelectionStart = m.Index;
+                txtOutput.SelectionStart = start + m.Index;
                 txtOutput.SelectionLength = m.Length;
-                txtOutput.SelectionColor = Color.Green;
+                txtOutput.SelectionColor = Color.LightGreen;
                 txtOutput.SelectionFont = new Font(txtOutput.Font, FontStyle.Bold);
             }
 
             foreach (Match m in commentMatches)
             {
-                txtOutput.SelectionStart = m.Index;
+                txtOutput.SelectionStart = start + m.Index;
                 txtOutput.SelectionLength = m.Length;
                 txtOutput.SelectionColor = Color.Green;
             }
 
             foreach (Match m in stringMatches)
             {
-                txtOutput.SelectionStart = m.Index;
+                txtOutput.SelectionStart = start + m.Index;
                 txtOutput.SelectionLength = m.Length;
-                txtOutput.SelectionColor = Color.Brown;
+                txtOutput.SelectionColor = Color.Yellow;
+                txtOutput.SelectionFont = new Font(txtOutput.Font, FontStyle.Bold);
             }
 
             foreach (Match m in versionsMatches)
             {
-                txtOutput.SelectionStart = m.Index;
+                txtOutput.SelectionStart = start + m.Index;
                 txtOutput.SelectionLength = m.Length;
-                txtOutput.SelectionColor = Color.Purple;
+                txtOutput.SelectionColor = Color.Cyan;
                 txtOutput.SelectionFont = new Font(txtOutput.Font, FontStyle.Bold);
             }
 
-            txtOutput.ScrollToCaret();
+            foreach (Match m in datesMatches)
+            {
+                txtOutput.SelectionStart = start + m.Index;
+                txtOutput.SelectionLength = m.Length;
+                txtOutput.SelectionColor = Color.LightSlateGray;
+                txtOutput.SelectionFont = new Font(txtOutput.Font, FontStyle.Italic);
+            }
 
             // restoring the original colors, for further writing
-            txtOutput.SelectionStart = originalIndex;
-            txtOutput.SelectionLength = originalLength;
+            txtOutput.SelectionStart = txtOutput.Text.Length;
             txtOutput.SelectionColor = originalColor;
             txtOutput.SelectionFont = new Font(txtOutput.Font, FontStyle.Regular);
+
+            txtOutput.ScrollToCaret();
         }
     }
 }

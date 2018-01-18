@@ -122,9 +122,9 @@ namespace FluentMigrator.Wizard
             }
             else
             {
+                System.Console.WriteLine(text);
                 txtOutput.AppendText(Environment.NewLine);
                 txtOutput.AppendText($"{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")}: {text}");
-                txtOutput.ScrollToCaret();
                 SyntaxHighlight.Apply(txtOutput, outputLastLength);
                 outputLastLength = txtOutput.Text.Length;
             }
@@ -363,12 +363,19 @@ namespace FluentMigrator.Wizard
 
         private void button4_Click_1(object sender, EventArgs e)
         {
+            outputLastLength = 0;
             txtOutput.Clear();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            outputLastLength = 0;
             txtOutput.Clear();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
