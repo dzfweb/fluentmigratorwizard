@@ -11,7 +11,7 @@ namespace FluentMigrator.Wizard
             var currentText = txtOutput.Text.Substring(start);
 
             // getting keywords/functions
-            string keywords = @"\b(DECLARE|SET|EXEC|AND|OR|DROP|INTO|SELECT|FROM|WHERE|ORDER|BY|DELETE|INSERT|VALUES|IN|ALTER|TABLE|COLUMN|INDEX|CONSTRAINT|PRIMARY|KEY|FOREIGN)\b";
+            string keywords = @"\b(CREATE|BIGINT|CHAR|VAR|NULL|NOT|DECLARE|SET|EXEC|AND|OR|DROP|INTO|SELECT|FROM|WHERE|ORDER|BY|DELETE|INSERT|VALUES|IN|ALTER|TABLE|COLUMN|INDEX|CONSTRAINT|PRIMARY|KEY|FOREIGN)\b";
             MatchCollection keywordMatches = Regex.Matches(currentText, keywords);
 
             // getting types/classes from the text
