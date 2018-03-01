@@ -121,16 +121,28 @@
   <data name="Commands" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Commands.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="down_arrow_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\down-arrow-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="down-to1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\down-to.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="down-to" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\down-to1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="up_arrow_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\up-arrow-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="down_arrow_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\down-arrow-4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="down-to2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\down-to1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="orbit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\orbit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="up_arrow_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\up-arrow-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="down_arrow_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\down-arrow-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow-angle-pointing-down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\arrow-angle-pointing-down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

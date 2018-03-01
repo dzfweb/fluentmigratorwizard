@@ -377,5 +377,31 @@ namespace FluentMigrator.Wizard
         {
             Application.Exit();
         }
+
+        private void button4_Click_2(object sender, EventArgs e)
+        {
+            using (var f = new VersionForm())
+            {
+                f.ShowDialog();
+
+                if (f.version.HasValue)
+                {
+                    var confirmResult = MessageBox.Show($"Are you sure to rollback to version {f.version}??",
+                                    "Confirm rollback!!",
+                                    MessageBoxButtons.YesNo);
+
+                    PrintToOutput($"Rolling back to version {f.version}");
+
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        if (!IsWorkerBusy())
+                        {
+                            arguments = GetDefaultArguments() + $" --t=rollback:toversion --version {f.version}";
+                            backgroundWorker.RunWorkerAsync();
+                        }
+                    }
+                }
+            }
+        }
     }
 }

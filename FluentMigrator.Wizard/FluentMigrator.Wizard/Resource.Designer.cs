@@ -19,7 +19,7 @@ namespace FluentMigrator.Wizard {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
@@ -61,6 +61,16 @@ namespace FluentMigrator.Wizard {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_angle_pointing_down {
+            get {
+                object obj = ResourceManager.GetObject("arrow-angle-pointing-down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to --task, -t=VALUE (optional)
         ///The task you want FluentMigrator to perform. Available choices are:
         ///migrate:up
@@ -91,6 +101,36 @@ namespace FluentMigrator.Wizard {
         internal static System.Drawing.Bitmap down_arrow_4 {
             get {
                 object obj = ResourceManager.GetObject("down_arrow_4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap down_to {
+            get {
+                object obj = ResourceManager.GetObject("down-to", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap down_to1 {
+            get {
+                object obj = ResourceManager.GetObject("down-to1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap down_to2 {
+            get {
+                object obj = ResourceManager.GetObject("down-to2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

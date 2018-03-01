@@ -92,6 +92,12 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="SyntaxHighlight.cs" />
+    <Compile Include="VersionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VersionForm.Designer.cs">
+      <DependentUpon>VersionForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,6 +110,9 @@
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VersionForm.resx">
+      <DependentUpon>VersionForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="IniFileParser\INIFileParser.nuspec" />
     <None Include="IniFileParser\Model\IniData.cs.rej" />
@@ -123,6 +132,9 @@
   <ItemGroup>
     <Content Include="001-magic-trick.ico" />
     <Content Include="IniFileParser\INIFileParser.csproj" />
+    <None Include="Resources\arrow-angle-pointing-down.png" />
+    <None Include="Resources\down-to1.png" />
+    <None Include="Resources\down-to.png" />
     <None Include="Resources\Commands.txt" />
     <None Include="Resources\down-arrow-1.png" />
     <None Include="Resources\up-arrow-1.png" />
