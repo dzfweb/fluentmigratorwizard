@@ -3,7 +3,7 @@
 User interface for fluent migrator CLI.
 
 ## Download
-[https://github.com/dzfweb/fluentmigratorwizard/releases](Download)
+[Go to releases page](https://github.com/dzfweb/fluentmigratorwizard/releases)
 
 
 ![print-1](print/fluent_migrator.png)
