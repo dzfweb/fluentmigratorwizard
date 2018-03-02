@@ -382,6 +382,7 @@ namespace FluentMigrator.Wizard
         {
             using (var f = new VersionForm())
             {
+                f.StartPosition = FormStartPosition.CenterParent;
                 f.ShowDialog();
 
                 if (f.version.HasValue)
