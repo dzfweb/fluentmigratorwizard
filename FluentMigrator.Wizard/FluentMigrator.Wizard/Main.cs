@@ -24,9 +24,14 @@ namespace FluentMigrator.Wizard
 
         private delegate void updateSelectedTabIndex(int tabIndex);
 
-        public Main()
+        public Main(string configurationFileName = null)
         {
             InitializeComponent();
+
+            if (!string.IsNullOrWhiteSpace(configurationFileName))
+            {
+                LoadConfiguration(configurationFileName);
+            }
         }
 
         private void Main_Load(object sender, System.EventArgs e)
@@ -77,17 +82,22 @@ namespace FluentMigrator.Wizard
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                data = parser.ReadFile(dialog.FileName);
-                txtConsole.Text = data["paths"]["console"];
-                txtMigrator.Text = data["paths"]["migrator"];
-                txtRunner.Text = data["paths"]["runner"];
-                txtMigrations.Text = data["paths"]["migrations"];
-                txtConnection.Text = data["paths"]["connection"];
-                txtProvider.Text = data["paths"]["provider"];
-                txtContext.Text = data["paths"]["context"];
+                LoadConfiguration(dialog.FileName);
             }
             this.Text = $"{formTitle} - ({dialog.SafeFileName})";
             PrintToOutput($"File opened: {dialog.FileName}");
+        }
+
+        private void LoadConfiguration(string configurationFileName)
+        {
+            data = parser.ReadFile(configurationFileName);
+            txtConsole.Text = data["paths"]["console"];
+            txtMigrator.Text = data["paths"]["migrator"];
+            txtRunner.Text = data["paths"]["runner"];
+            txtMigrations.Text = data["paths"]["migrations"];
+            txtConnection.Text = data["paths"]["connection"];
+            txtProvider.Text = data["paths"]["provider"];
+            txtContext.Text = data["paths"]["context"];
         }
 
         private void UpdateProgressBar(bool visible)
