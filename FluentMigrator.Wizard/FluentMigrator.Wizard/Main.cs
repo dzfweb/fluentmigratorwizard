@@ -98,6 +98,7 @@ namespace FluentMigrator.Wizard
             txtConnection.Text = data["paths"]["connection"];
             txtProvider.Text = data["paths"]["provider"];
             txtContext.Text = data["paths"]["context"];
+            txtArguments.Text = data["paths"]["arguments"];
         }
 
         private void UpdateProgressBar(bool visible)
@@ -165,6 +166,7 @@ namespace FluentMigrator.Wizard
                     data["paths"]["connection"] = txtConnection.Text;
                     data["paths"]["provider"] = txtProvider.Text;
                     data["paths"]["context"] = txtContext.Text;
+                    data["paths"]["arguments"] = txtArguments.Text;
 
                     parser.WriteFile(dialog.FileName, data);
 
