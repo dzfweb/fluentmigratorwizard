@@ -15,6 +15,7 @@ namespace FluentMigrator.Wizard
         private string arguments = string.Empty;
         private Process p;
         private int outputLastLength = 0;
+        private string lastConfigurationFileLoad;
 
         private delegate void updateDelegate(string output);
 
@@ -90,6 +91,7 @@ namespace FluentMigrator.Wizard
 
         private void LoadConfiguration(string configurationFileName)
         {
+            lastConfigurationFileLoad = configurationFileName;
             data = parser.ReadFile(configurationFileName);
             txtConsole.Text = data["paths"]["console"];
             txtMigrator.Text = data["paths"]["migrator"];
@@ -141,7 +143,17 @@ namespace FluentMigrator.Wizard
             }
         }
 
-        private void salvarToolStripMenuItem_Click(object sender, System.EventArgs e)
+        private void saveToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (!File.Exists(lastConfigurationFileLoad))
+            {
+                saveAsToolStripMenuItem_Click(sender, e);
+            }
+
+            SaveConfiguration(lastConfigurationFileLoad);
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Title = "Select the file to save this settings";
@@ -149,34 +161,39 @@ namespace FluentMigrator.Wizard
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                if (!File.Exists(dialog.FileName))
-                    using (var fs = File.Create(dialog.FileName))
-                    {
-                        PrintToOutput($"File created: {dialog.FileName}");
-                    }
+                SaveConfiguration(dialog.FileName);
+            }
+        }
 
-                try
+        private void SaveConfiguration(string configurationFileName)
+        {
+            if (!File.Exists(configurationFileName))
+                using (var fs = File.Create(configurationFileName))
                 {
-                    data = parser.ReadFile(dialog.FileName);
-
-                    data["paths"]["console"] = txtConsole.Text;
-                    data["paths"]["migrator"] = txtMigrator.Text;
-                    data["paths"]["runner"] = txtRunner.Text;
-                    data["paths"]["migrations"] = txtMigrations.Text;
-                    data["paths"]["connection"] = txtConnection.Text;
-                    data["paths"]["provider"] = txtProvider.Text;
-                    data["paths"]["context"] = txtContext.Text;
-                    data["paths"]["arguments"] = txtArguments.Text;
-
-                    parser.WriteFile(dialog.FileName, data);
-
-                    PrintToOutput($"File save: {dialog.FileName}");
-                    this.Text = $"{formTitle} - ({dialog.FileName})";
+                    PrintToOutput($"File created: {configurationFileName}");
                 }
-                catch (Exception ex)
-                {
-                    PrintToOutput($"Error while saving file: {dialog.FileName}");
-                }
+
+            try
+            {
+                data = parser.ReadFile(configurationFileName);
+
+                data["paths"]["console"] = txtConsole.Text;
+                data["paths"]["migrator"] = txtMigrator.Text;
+                data["paths"]["runner"] = txtRunner.Text;
+                data["paths"]["migrations"] = txtMigrations.Text;
+                data["paths"]["connection"] = txtConnection.Text;
+                data["paths"]["provider"] = txtProvider.Text;
+                data["paths"]["context"] = txtContext.Text;
+                data["paths"]["arguments"] = txtArguments.Text;
+
+                parser.WriteFile(configurationFileName, data);
+
+                PrintToOutput($"File save: {configurationFileName}");
+                this.Text = $"{formTitle} - ({configurationFileName})";
+            }
+            catch (Exception ex)
+            {
+                PrintToOutput($"Error while saving file: {configurationFileName}");
             }
         }
 
