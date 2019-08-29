@@ -16,6 +16,9 @@ namespace FluentMigrator.Wizard
         private Process p;
         private int outputLastLength = 0;
         private string lastConfigurationFileLoad;
+        private string command;
+
+
 
         private delegate void updateDelegate(string output);
 
@@ -43,6 +46,7 @@ namespace FluentMigrator.Wizard
 
         private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            arguments = string.Empty;
         }
 
         private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -52,6 +56,7 @@ namespace FluentMigrator.Wizard
                 UpdateProgressBar(true);
                 UpdateCancelButton(true);
                 ExecuteProcess();
+                arguments = string.Empty;
             }
             catch (Exception ex)
             {
@@ -59,6 +64,7 @@ namespace FluentMigrator.Wizard
                 UpdateCancelButton(false);
                 UpdateProgressBar(false);
                 ChangeTab(1);
+                arguments = string.Empty;
             }
         }
 
@@ -212,6 +218,7 @@ namespace FluentMigrator.Wizard
 
         private void btnList_Click(object sender, EventArgs e)
         {
+            command = string.Empty;
             if (!IsWorkerBusy())
             {
                 arguments = GetDefaultArguments() + " --t=listmigrations";
@@ -221,6 +228,7 @@ namespace FluentMigrator.Wizard
 
         private void btnUp_Click(object sender, EventArgs e)
         {
+            command = "UP";
             if (!IsWorkerBusy())
             {
                 arguments = GetDefaultArguments() + "--t=migrate";
@@ -230,6 +238,7 @@ namespace FluentMigrator.Wizard
 
         private void btnDown_Click(object sender, EventArgs e)
         {
+            command = "DOWN";
             var confirmResult = MessageBox.Show("Are you sure to rollback one version ??",
                                      "Confirm rollback!!",
                                      MessageBoxButtons.YesNo);
@@ -289,6 +298,7 @@ namespace FluentMigrator.Wizard
 
         private void btnDownAll_Click(object sender, EventArgs e)
         {
+            command = "DOWN";
             var confirmResult = MessageBox.Show("Are you sure to rollback all versions ??",
                                      "Confirm rollback!!",
                                      MessageBoxButtons.YesNo);
@@ -314,8 +324,16 @@ namespace FluentMigrator.Wizard
         private string GetContext() =>
             string.IsNullOrEmpty(txtContext.Text) ? "" : $"--context {txtContext.Text}";
 
-        private string GetDefaultArguments() =>
-            $"--connectionString \"{txtConnection.Text}\" --a {txtMigrations.Text} --provider {txtProvider.Text} {GetContext()}";
+        private string GetDefaultArguments()
+        {
+            var _default = $"--connectionString \"{txtConnection.Text}\" --a {txtMigrations.Text} --provider {txtProvider.Text} {GetContext()}";
+            if (chkSaveFile.Checked && !string.IsNullOrEmpty(txtSaveFile.Text.Trim()) && !string.IsNullOrEmpty(command))
+            {
+                var _pathsave = Path.Combine(txtSaveFile.Text.Trim(), command + DateTime.Now.ToShortDateString().Replace("/", "") + DateTime.Now.ToLongTimeString().Replace(":", "") + ".sql");
+                _default += $" --output --outputFilename={_pathsave} ";
+            }
+            return _default;
+        }
 
         private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -409,6 +427,8 @@ namespace FluentMigrator.Wizard
 
         private void button4_Click_2(object sender, EventArgs e)
         {
+            command = "DOWN";
+
             using (var f = new VersionForm())
             {
                 f.StartPosition = FormStartPosition.CenterParent;
@@ -426,12 +446,29 @@ namespace FluentMigrator.Wizard
                     {
                         if (!IsWorkerBusy())
                         {
-                            arguments = GetDefaultArguments() + $" --t=rollback:toversion --version {f.version}";
+                            arguments = GetDefaultArguments() + $" --t=rollback:toversion --version {f.version} ";
                             backgroundWorker.RunWorkerAsync();
                         }
                     }
                 }
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.ShowNewFolderButton = true;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtSaveFile.Text = dialog.SelectedPath;
+            }
+        }
+
+        private void chkSaveFile_CheckedChanged(object sender, EventArgs e)
+        {
+            txtSaveFile.Visible = chkSaveFile.Checked;
+            button5.Visible = chkSaveFile.Checked;
+            if(!chkSaveFile.Checked) txtSaveFile.ResetText();
         }
     }
 }
