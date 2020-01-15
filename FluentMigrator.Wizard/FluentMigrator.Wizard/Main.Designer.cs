@@ -31,11 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Geral = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.txtSaveFile = new System.Windows.Forms.TextBox();
+            this.chkSaveFile = new System.Windows.Forms.CheckBox();
             this.Options = new System.Windows.Forms.GroupBox();
+            this.cboEncoding = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnArgument = new System.Windows.Forms.Button();
             this.txtArguments = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.cbxVerbose = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -77,9 +82,6 @@
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.btnCancel = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.chkSaveFile = new System.Windows.Forms.CheckBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.txtSaveFile = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.Geral.SuspendLayout();
             this.Options.SuspendLayout();
@@ -116,23 +118,77 @@
             this.Geral.Text = "General";
             this.Geral.UseVisualStyleBackColor = true;
             // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Location = new System.Drawing.Point(518, 413);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(25, 23);
+            this.button5.TabIndex = 22;
+            this.button5.Text = "...";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // txtSaveFile
+            // 
+            this.txtSaveFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSaveFile.Location = new System.Drawing.Point(15, 416);
+            this.txtSaveFile.Name = "txtSaveFile";
+            this.txtSaveFile.Size = new System.Drawing.Size(495, 20);
+            this.txtSaveFile.TabIndex = 21;
+            this.txtSaveFile.Visible = false;
+            // 
+            // chkSaveFile
+            // 
+            this.chkSaveFile.AutoSize = true;
+            this.chkSaveFile.Location = new System.Drawing.Point(15, 393);
+            this.chkSaveFile.Name = "chkSaveFile";
+            this.chkSaveFile.Size = new System.Drawing.Size(70, 17);
+            this.chkSaveFile.TabIndex = 16;
+            this.chkSaveFile.Text = "Save File";
+            this.chkSaveFile.UseVisualStyleBackColor = true;
+            this.chkSaveFile.CheckedChanged += new System.EventHandler(this.chkSaveFile_CheckedChanged);
+            // 
             // Options
             // 
+            this.Options.Controls.Add(this.cboEncoding);
+            this.Options.Controls.Add(this.label9);
             this.Options.Controls.Add(this.btnArgument);
             this.Options.Controls.Add(this.txtArguments);
             this.Options.Controls.Add(this.cbxVerbose);
             this.Options.Controls.Add(this.label8);
             this.Options.Location = new System.Drawing.Point(6, 312);
             this.Options.Name = "Options";
-            this.Options.Size = new System.Drawing.Size(524, 75);
+            this.Options.Size = new System.Drawing.Size(547, 75);
             this.Options.TabIndex = 15;
             this.Options.TabStop = false;
             this.Options.Text = "Options";
             // 
+            // cboEncoding
+            // 
+            this.cboEncoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEncoding.FormattingEnabled = true;
+            this.cboEncoding.Location = new System.Drawing.Point(234, 37);
+            this.cboEncoding.Name = "cboEncoding";
+            this.cboEncoding.Size = new System.Drawing.Size(159, 21);
+            this.cboEncoding.TabIndex = 18;
+            this.cboEncoding.SelectedIndexChanged += new System.EventHandler(this.cboCultureInfo_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(231, 21);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Encoding";
+            // 
             // btnArgument
             // 
             this.btnArgument.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnArgument.Location = new System.Drawing.Point(384, 34);
+            this.btnArgument.Location = new System.Drawing.Point(417, 35);
             this.btnArgument.Name = "btnArgument";
             this.btnArgument.Size = new System.Drawing.Size(124, 23);
             this.btnArgument.TabIndex = 16;
@@ -146,8 +202,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtArguments.Location = new System.Drawing.Point(9, 37);
             this.txtArguments.Name = "txtArguments";
-            this.txtArguments.Size = new System.Drawing.Size(353, 20);
+            this.txtArguments.Size = new System.Drawing.Size(219, 20);
             this.txtArguments.TabIndex = 16;
+            // 
+            // cbxVerbose
+            // 
+            this.cbxVerbose.AutoSize = true;
+            this.cbxVerbose.Checked = true;
+            this.cbxVerbose.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxVerbose.Location = new System.Drawing.Point(417, 17);
+            this.cbxVerbose.Name = "cbxVerbose";
+            this.cbxVerbose.Size = new System.Drawing.Size(65, 17);
+            this.cbxVerbose.TabIndex = 14;
+            this.cbxVerbose.Text = "Verbose";
+            this.cbxVerbose.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -157,18 +225,6 @@
             this.label8.Size = new System.Drawing.Size(57, 13);
             this.label8.TabIndex = 15;
             this.label8.Text = "Arguments";
-            // 
-            // cbxVerbose
-            // 
-            this.cbxVerbose.AutoSize = true;
-            this.cbxVerbose.Checked = true;
-            this.cbxVerbose.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxVerbose.Location = new System.Drawing.Point(384, 11);
-            this.cbxVerbose.Name = "cbxVerbose";
-            this.cbxVerbose.Size = new System.Drawing.Size(65, 17);
-            this.cbxVerbose.TabIndex = 14;
-            this.cbxVerbose.Text = "Verbose";
-            this.cbxVerbose.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -375,7 +431,7 @@
             this.Console.Location = new System.Drawing.Point(4, 22);
             this.Console.Name = "Console";
             this.Console.Padding = new System.Windows.Forms.Padding(3);
-            this.Console.Size = new System.Drawing.Size(536, 414);
+            this.Console.Size = new System.Drawing.Size(559, 452);
             this.Console.TabIndex = 1;
             this.Console.Text = "Output";
             this.Console.UseVisualStyleBackColor = true;
@@ -390,7 +446,7 @@
             this.txtOutput.Location = new System.Drawing.Point(3, 3);
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
-            this.txtOutput.Size = new System.Drawing.Size(530, 408);
+            this.txtOutput.Size = new System.Drawing.Size(553, 446);
             this.txtOutput.TabIndex = 0;
             this.txtOutput.Text = "";
             // 
@@ -580,39 +636,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click_2);
             // 
-            // chkSaveFile
-            // 
-            this.chkSaveFile.AutoSize = true;
-            this.chkSaveFile.Location = new System.Drawing.Point(15, 393);
-            this.chkSaveFile.Name = "chkSaveFile";
-            this.chkSaveFile.Size = new System.Drawing.Size(70, 17);
-            this.chkSaveFile.TabIndex = 16;
-            this.chkSaveFile.Text = "Save File";
-            this.chkSaveFile.UseVisualStyleBackColor = true;
-            this.chkSaveFile.CheckedChanged += new System.EventHandler(this.chkSaveFile_CheckedChanged);
-            // 
-            // button5
-            // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(518, 413);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(25, 23);
-            this.button5.TabIndex = 22;
-            this.button5.Text = "...";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Visible = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // txtSaveFile
-            // 
-            this.txtSaveFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSaveFile.Location = new System.Drawing.Point(15, 416);
-            this.txtSaveFile.Name = "txtSaveFile";
-            this.txtSaveFile.Size = new System.Drawing.Size(495, 20);
-            this.txtSaveFile.TabIndex = 21;
-            this.txtSaveFile.Visible = false;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -700,6 +723,8 @@
         private System.Windows.Forms.CheckBox chkSaveFile;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox txtSaveFile;
+        private System.Windows.Forms.ComboBox cboEncoding;
+        private System.Windows.Forms.Label label9;
     }
 }
 
