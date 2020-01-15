@@ -1,8 +1,11 @@
 ﻿using FluentMigrator.Wizard.IniParser;
 using FluentMigrator.Wizard.IniParser.Model;
+
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace FluentMigrator.Wizard
@@ -17,8 +20,7 @@ namespace FluentMigrator.Wizard
         private int outputLastLength = 0;
         private string lastConfigurationFileLoad;
         private string command;
-
-
+        private static string encodingName = "IBM00858";
 
         private delegate void updateDelegate(string output);
 
@@ -32,10 +34,36 @@ namespace FluentMigrator.Wizard
         {
             InitializeComponent();
 
+            LoadEncodings();
+
             if (!string.IsNullOrWhiteSpace(configurationFileName))
             {
                 LoadConfiguration(configurationFileName);
             }
+        }
+
+        private void LoadEncodings()
+        {
+            var encodings = Encoding
+                                .GetEncodings()
+                                .Where(x => x.Name != "IBM00858")
+                                .Select(x =>
+                                {
+                                    return new AvailableEncoding
+                                    {
+                                        DisplayName = x.DisplayName,
+                                        Name = x.Name
+                                    };
+                                })
+                                //.ToList()
+                                .Cast<object>()
+                                .ToArray();
+
+            cboEncoding.Items.Add(new AvailableEncoding { DisplayName = "OEM Multilingual Latin I", Name = "IBM00858" });
+            cboEncoding.Items.AddRange(encodings);
+            cboEncoding.DisplayMember = "DisplayName";
+            cboEncoding.ValueMember = "Name";
+            cboEncoding.SelectedIndex = 0;
         }
 
         private void Main_Load(object sender, System.EventArgs e)
@@ -269,10 +297,13 @@ namespace FluentMigrator.Wizard
             p.StartInfo.RedirectStandardError = true;
             p.StartInfo.RedirectStandardInput = true;
             p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(encodingName);
+            p.StartInfo.StandardErrorEncoding = Encoding.GetEncoding(encodingName);
             p.EnableRaisingEvents = true;
             p.OutputDataReceived += process_OutputDataReceived;
             p.ErrorDataReceived += process_OutputDataReceived;
             p.Exited += process_Exited;
+
             p.Start();
             p.BeginErrorReadLine();
             p.BeginOutputReadLine();
@@ -468,7 +499,25 @@ namespace FluentMigrator.Wizard
         {
             txtSaveFile.Visible = chkSaveFile.Checked;
             button5.Visible = chkSaveFile.Checked;
-            if(!chkSaveFile.Checked) txtSaveFile.ResetText();
+            if (!chkSaveFile.Checked) txtSaveFile.ResetText();
+        }
+
+        private void cboCultureInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var encoding = (AvailableEncoding)cboEncoding.SelectedItem;
+
+            if (string.IsNullOrWhiteSpace(encoding.Name))
+            {
+                return;
+            }
+
+            encodingName = encoding.Name;
+        }
+
+        private struct AvailableEncoding
+        {
+            public string DisplayName { get; set; }
+            public string Name { get; set; }
         }
     }
 }
